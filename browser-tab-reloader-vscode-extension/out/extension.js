@@ -47,7 +47,9 @@ function activate(context) {
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with registerCommand
     // The commandId parameter must match the command field in package.json
-    const disposable = vscode.commands.registerCommand("browser-tab-reloader-vscode-extension.helloWorld", () => { });
+    const disposable = vscode.commands.registerCommand("browser-tab-reloader-vscode-extension.startServer", () => {
+        vscode.window.showInformationMessage("Server started on port 3000");
+    });
     context.subscriptions.push(disposable);
 }
 // This method is called when your extension is deactivated
