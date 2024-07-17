@@ -35,6 +35,9 @@ const io = new socket_io_1.Server();
 io.on("connection", () => {
     console.log("connection");
 });
+io.on("ping", () => {
+    console.log("pong");
+});
 vscode.workspace.onDidSaveTextDocument((e) => {
     console.log("Document changed.");
     io.emit("change");

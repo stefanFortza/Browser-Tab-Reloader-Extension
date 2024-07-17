@@ -1,14 +1,23 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
+import http from "http";
 import { Server } from "socket.io";
-const io = new Server();
+const httpServer = http.createServer();
+const io = new Server(httpServer, {
+  cors: {
+    origin: ["chrome-extension://oaebgohlagpedmgekbdmbkfkkfilhmkj", "*"],
+    allowedHeaders: "*",
+    credentials: true,
+  },
+});
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
-
-io.on("connection", () => {
+io.on("connection", (socket) => {
   console.log("connection");
+
+  socket.on("ping", (socket) => {
+    console.log("pong");
+  });
 });
 
 vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
@@ -18,15 +27,10 @@ vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
 });
 
 export function activate(context: vscode.ExtensionContext) {
-  // Use the console to output diagnostic information (console.log) and errors (console.error)
-  // This line of code will only be executed once when your extension is activated
   console.log(
     'Congratulations, your extension "browser-tab-reloader-vscode-extension" is now active!'
   );
 
-  // The command has been defined in the package.json file
-  // Now provide the implementation of the command with registerCommand
-  // The commandId parameter must match the command field in package.json
   const disposable = vscode.commands.registerCommand(
     "browser-tab-reloader-vscode-extension.startServer",
     () => {
@@ -35,9 +39,8 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(disposable);
+
+  io.listen(3000);
 }
 
-// This method is called when your extension is deactivated
 export function deactivate() {}
-
-io.listen(3000);
