@@ -1,32 +1,43 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import http from "http";
 import { Server } from "socket.io";
-const httpServer = http.createServer();
-const io = new Server(httpServer, {
-  cors: {
-    origin: ["chrome-extension://oaebgohlagpedmgekbdmbkfkkfilhmkj", "*"],
-    allowedHeaders: "*",
-    credentials: true,
-  },
-});
 
-io.on("connection", (socket) => {
-  console.log("connection");
-
-  socket.on("ping", (socket) => {
-    console.log("pong");
-  });
-});
+let io: Server | undefined;
 
 vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
   console.log("Document changed.");
-  io.emit("change");
-  console.log(e.getText());
+  if (io) {
+    io.emit("change", e.getText());
+  }
 });
 
 export function activate(context: vscode.ExtensionContext) {
+  const startServer = () => {
+    const httpServer = http.createServer();
+    io = new Server(httpServer, {
+      cors: {
+        origin: "*",
+      },
+    });
+
+    io.on("connection", (socket) => {
+      console.log("A user connected.");
+
+      socket.on("ping", () => {
+        console.log("pong");
+      });
+
+      socket.on("disconnect", () => {
+        console.log("A user disconnected.");
+      });
+    });
+
+    httpServer.listen(3000, () => {
+      console.log("Server started on port 3000");
+      vscode.window.showInformationMessage("Server started on port 3000");
+    });
+  };
+
   console.log(
     'Congratulations, your extension "browser-tab-reloader-vscode-extension" is now active!'
   );
@@ -34,13 +45,21 @@ export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand(
     "browser-tab-reloader-vscode-extension.startServer",
     () => {
-      vscode.window.showInformationMessage("Server started on port 3000");
+      if (!io) {
+        startServer();
+      } else {
+        vscode.window.showInformationMessage("Server is already running.");
+      }
     }
   );
 
   context.subscriptions.push(disposable);
-
-  io.listen(3000);
 }
 
-export function deactivate() {}
+export function deactivate() {
+  if (io) {
+    io.close(() => {
+      console.log("Server closed");
+    });
+  }
+}
