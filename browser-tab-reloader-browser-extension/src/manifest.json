@@ -18,5 +18,15 @@
     "{{chrome}}.service_worker": "src/background.ts",
     "{{firefox}}.scripts": ["src/background.ts"]
   },
-  "host_permissions": ["http://localhost:3000/*"]
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content-script.ts"]
+    }
+  ],
+  "host_permissions": ["http://localhost:3000/*"],
+  "permissions": ["activeTab", "tabs", "storage"],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval' http://localhost:*; object-src 'self';"
+  }
 }

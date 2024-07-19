@@ -8,9 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@types/chrome':
+        specifier: ^0.0.268
+        version: 0.0.268
       '@types/socket.io-client':
         specifier: ^3.0.0
         version: 3.0.0
+      chrome-types:
+        specifier: ^0.1.292
+        version: 0.1.292
       cors:
         specifier: ^2.8.5
         version: 2.8.5
@@ -306,8 +312,20 @@ packages:
     resolution: {integrity: sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw==}
     engines: {node: '>=14.16'}
 
+  '@types/chrome@0.0.268':
+    resolution: {integrity: sha512-7N1QH9buudSJ7sI8Pe4mBHJr5oZ48s0hcanI9w3wgijAlv1OZNUZve9JR4x42dn5lJ5Sm87V1JNfnoh10EnQlA==}
+
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
+
+  '@types/filesystem@0.0.36':
+    resolution: {integrity: sha512-vPDXOZuannb9FZdxgHnqSwAG/jvdGM8Wq+6N4D/d80z+D4HWH+bItqsZaVRQykAn6WEVeEkLm2oQigyHtgb0RA==}
+
+  '@types/filewriter@0.0.33':
+    resolution: {integrity: sha512-xFU8ZXTw4gd358lb2jw25nxY9QAgqn2+bKKjKOYfNCzN4DKCFetK7sPtrlpg66Ywe3vWY9FNxprZawAh9wfJ3g==}
+
+  '@types/har-format@1.2.15':
+    resolution: {integrity: sha512-RpQH4rXLuvTXKR0zqHq3go0RVXYv/YVqv4TnPH95VbwUxZdQlK1EtcMvQvMpDngHbt13Csh9Z4qT9AbkiQH5BA==}
 
   '@types/http-cache-semantics@4.0.4':
     resolution: {integrity: sha512-1m0bIFVc7eJWyve9S0RnuRgcQqF/Xd5QsUZAZeQFr1Q3/p9JWoQQEqmVy+DPTNpGXwhgIetAoYF8JSc33q29QA==}
@@ -423,6 +441,9 @@ packages:
     resolution: {integrity: sha512-rJYWeEAERwWIr3c3mEVXwNiODPEdMRlRxHc47B1qHPOolHZnkj7rMv1QSUfPoG6MgatWj5AxSpnKKR4QEwEQIQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+
+  chrome-types@0.1.292:
+    resolution: {integrity: sha512-7iXzY8TtkwSK3DOTznKO1SfPg8i4lsDjFPBpXNPu1CPYRRBhWrt5FDReLMtfGTU9ZRNVr54sfaH4AU7C2KA/uQ==}
 
   ci-info@3.9.0:
     resolution: {integrity: sha512-NIxF55hv4nSqQswkAeiOi1r83xy8JldOFDTWiug55KBu9Jnblncd2U6ViHmYgHf01TPZS77NJBhBMKdWj9HQMQ==}
@@ -1450,7 +1471,20 @@ snapshots:
     dependencies:
       defer-to-connect: 2.0.1
 
+  '@types/chrome@0.0.268':
+    dependencies:
+      '@types/filesystem': 0.0.36
+      '@types/har-format': 1.2.15
+
   '@types/estree@1.0.5': {}
+
+  '@types/filesystem@0.0.36':
+    dependencies:
+      '@types/filewriter': 0.0.33
+
+  '@types/filewriter@0.0.33': {}
+
+  '@types/har-format@1.2.15': {}
 
   '@types/http-cache-semantics@4.0.4': {}
 
@@ -1568,6 +1602,8 @@ snapshots:
       lighthouse-logger: 2.0.1
     transitivePeerDependencies:
       - supports-color
+
+  chrome-types@0.1.292: {}
 
   ci-info@3.9.0: {}
 

@@ -17,6 +17,7 @@ export default defineConfig({
     webExtension({
       manifest: generateManifest,
       watchFilePaths: ["package.json", "manifest.json"],
+      browser: process.env.CHROME_PATH || "chrome",
     }),
   ],
 });

@@ -1,28 +1,20 @@
-// import browser from "webextension-polyfill";
+import browser from "webextension-polyfill";
+import { io } from "socket.io-client";
 
 // console.log("Hello from the background!");
 
-// browser.runtime.onInstalled.addListener((details) => {
-//   console.log("Extension installed:", details);
-// });
+browser.runtime.onInstalled.addListener((details) => {});
 
-// import { io } from "socket.io-client";
+async function getCurrentTab() {
+  let queryOptions = { active: true, lastFocusedWindow: true };
+  // `tab` will either be a `tabs.Tab` instance or `undefined`.
+  let [tab] = await chrome.tabs.query(queryOptions);
+  return tab;
+}
 
-// const socket = io("http://localhost:3000");
-
-// socket.on("connect", () => {
-//   console.log(socket.id); // ojIckSD2jqNzOqIrAGzL
-// });
-
-// console.log(socket);
-// socket.emit("ping");
-// console.log("emitted ping");
-// // socket.connect();
-
-// // const btn = document.querySelector<HTMLButtonElement>("button");
-// // if (btn) {
-// //   btn.addEventListener("click", () => {
-// //     console.log("ping");
-// //     socket.emit("ping");
-// //   });
-// // }
+browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log(message, sender);
+  getCurrentTab().then((tab) => {
+    chrome.tabs.reload(tab.id!);
+  });
+});

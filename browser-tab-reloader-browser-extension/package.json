@@ -16,7 +16,9 @@
     "webextension-polyfill": "^0.10.0"
   },
   "dependencies": {
+    "@types/chrome": "^0.0.268",
     "@types/socket.io-client": "^3.0.0",
+    "chrome-types": "^0.1.292",
     "cors": "^2.8.5",
     "socket.io-client": "^4.7.5"
   }
