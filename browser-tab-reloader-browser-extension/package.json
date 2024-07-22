@@ -4,22 +4,22 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "compile": "tsc --noEmit",
     "dev": "vite",
-    "build": "vite build"
+    "build": "tsc && vite build"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "socket.io-client": "^4.7.5"
   },
   "devDependencies": {
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
     "@types/webextension-polyfill": "^0.10.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "typescript": "^5.3.2",
     "vite": "^5.0.0",
     "vite-plugin-web-extension": "^4.0.0",
     "webextension-polyfill": "^0.10.0"
-  },
-  "dependencies": {
-    "@types/chrome": "^0.0.268",
-    "@types/socket.io-client": "^3.0.0",
-    "chrome-types": "^0.1.292",
-    "cors": "^2.8.5",
-    "socket.io-client": "^4.7.5"
   }
 }

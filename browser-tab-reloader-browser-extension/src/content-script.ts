@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-import Browser from "webextension-polyfill";
+import browser from "webextension-polyfill";
 
 const socket = io("http://localhost:3000");
 
@@ -11,7 +11,7 @@ console.log(socket);
 socket.emit("ping");
 console.log("emitted ping");
 socket.on("change", () => {
-  chrome.runtime.sendMessage({ change: true });
+  browser.runtime.sendMessage({ change: true });
 });
 
 // async function getCurrentTab() {
