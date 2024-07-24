@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "browser-tab-reloader-vscode-extension.helloWorld",
-        "title": "Hello World"
+        "command": "browser-tab-reloader-vscode-extension.startServer",
+        "title": "Start Server"
       }
     ]
   },
