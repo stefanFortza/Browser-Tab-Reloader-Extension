@@ -11,7 +11,7 @@ console.log(socket);
 socket.emit("ping");
 console.log("emitted ping");
 socket.on("change", () => {
-  browser.runtime.sendMessage({ change: true });
+  browser.runtime.sendMessage("change");
 });
 
 // async function getCurrentTab() {

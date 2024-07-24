@@ -1,36 +1,12 @@
 import { FC, useEffect, useState } from "react";
 import browser from "webextension-polyfill";
 import "./Popup.css";
-
-type Tab = browser.Tabs.Tab;
-
-const getTabsFromStorage = async (): Promise<Tab[]> => {
-  const item = await browser.storage.session.get("tabs");
-  return item.tabs ? item.tabs : [];
-};
-
-const setTabsInStorage = async (tabs: Tab[]) => {
-  await browser.storage.session.set({ tabs: tabs });
-};
-
-const addTabToStorage = async (tab: Tab) => {
-  const tabs = await getTabsFromStorage();
-  if (tabs.some((t) => t.id === tab.id)) return;
-  setTabsInStorage([...tabs, tab]);
-};
-
-const getActiveTab = async () => {
-  let queryOptions = { active: true, lastFocusedWindow: true };
-  // `tab` will either be a `tabs.Tab` instance or `undefined`.
-  let [tab] = await browser.tabs.query(queryOptions);
-  return tab;
-};
-
-const removeTabFromStorage = async (tab: Tab) => {
-  const tabs = await getTabsFromStorage();
-  const newTabs = tabs.filter((t) => t.id != tab.id);
-  await setTabsInStorage(newTabs);
-};
+import {
+  addTabToStorage,
+  getActiveTab,
+  getTabsFromStorage,
+  removeTabFromStorage,
+} from "../utils";
 
 const getIsCurrentTabActiveForReloading = async () => {
   const tabs = await getTabsFromStorage();
@@ -55,6 +31,7 @@ const Popup: FC = () => {
     console.log("Activated Extension On This Page");
     await addTabToStorage(await getActiveTab());
     console.log(await getTabsFromStorage());
+    browser.runtime.sendMessage("activate_tab");
     setIsActive(true);
   };
 
