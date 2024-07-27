@@ -17,7 +17,17 @@
         "command": "browser-tab-reloader-vscode-extension.startServer",
         "title": "Start Server"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Browser Tab Reloader",
+      "properties": {
+        "browser-tab-reloader-vscode-extension.reloadDelay": {
+          "type": "integer",
+          "default": 50,
+          "description": "Enable reloading delay in ms"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "pnpm run compile",

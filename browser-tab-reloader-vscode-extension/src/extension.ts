@@ -4,11 +4,18 @@ import { Server } from "socket.io";
 
 let io: Server | undefined;
 
-vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
+vscode.workspace.onDidSaveTextDocument(async (e: vscode.TextDocument) => {
   console.log("Document changed.");
-  if (io) {
-    io.emit("change", e.getText());
-  }
+  const delay: number | undefined = vscode.workspace
+    .getConfiguration("browser-tab-reloader-vscode-extension")
+    .get("reloadDelay");
+  console.log(delay);
+
+  setTimeout(() => {
+    if (io && delay) {
+      io.emit("change", e.getText());
+    }
+  }, delay);
 });
 
 export function activate(context: vscode.ExtensionContext) {
