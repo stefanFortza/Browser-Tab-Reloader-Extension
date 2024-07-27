@@ -59,12 +59,16 @@ async function injectScript(tabId: number) {
 browser.runtime.onMessage.addListener(
   async (message: "activate_tab" | "change", sender, sendResponse) => {
     console.log(message, sender);
-    const activeTab = await getActiveTab();
 
     if (message === "activate_tab") {
+      const activeTab = await getActiveTab();
       injectScript(activeTab.id!);
     } else if (message === "change") {
-      if (activeTab) browser.tabs.reload(activeTab.id!);
+      const activeTabs = await getTabsFromStorage();
+      activeTabs.forEach((tab) => {
+        browser.tabs.reload(tab.id!);
+      });
+      // if (activeTab) browser.tabs.reload(activeTab.id!);
     }
   }
 );
