@@ -4,18 +4,24 @@
   "description": "This is an extension that reloads a browser tab when a file changes in current workspace",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.91.0"
+    "vscode": "^1.80.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "browser-tab-reloader-vscode-extension.startServer",
-        "title": "Start Server"
+        "title": "Browser Tab: Start Server"
+      },
+      {
+        "command": "browser-tab-reloader-vscode-extension.stopServer",
+        "title": "Browser Tab: Stop Server"
       }
     ],
     "configuration": {
@@ -24,7 +30,12 @@
         "browser-tab-reloader-vscode-extension.reloadDelay": {
           "type": "integer",
           "default": 50,
-          "description": "Enable reloading delay in ms"
+          "description": "Delay in ms before reloading the browser tab"
+        },
+        "browser-tab-reloader-vscode-extension.fileExtensions": {
+          "type": "string",
+          "default": "",
+          "description": "Specify file extensions to watch for reloading, separated by commas, ex: ts, js, html\n If left empty all files from workspace will be watched"
         }
       }
     }
