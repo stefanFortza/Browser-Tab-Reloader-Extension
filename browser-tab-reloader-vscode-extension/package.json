@@ -60,6 +60,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "pnpm": "^9.6.0",
     "socket.io": "^4.7.5"
   }
 }
