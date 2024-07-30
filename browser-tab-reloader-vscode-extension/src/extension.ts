@@ -1,65 +1,42 @@
 import * as vscode from "vscode";
-import http from "http";
-import { Server } from "socket.io";
+import { io, startServer, stopServer } from "./Server";
+import { onFileChange } from "./OnFileChange";
 
-let io: Server | undefined;
-
-vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
-  console.log("Document changed.");
-  if (io) {
-    io.emit("change", e.getText());
-  }
-});
+// vscode.workspace.onDidChangeTextDocument(onFileChange);
 
 export function activate(context: vscode.ExtensionContext) {
-  const startServer = () => {
-    const httpServer = http.createServer();
-    io = new Server(httpServer, {
-      cors: {
-        origin: "*",
-      },
-    });
-
-    io.on("connection", (socket) => {
-      console.log("A user connected.");
-
-      socket.on("ping", () => {
-        console.log("pong");
-      });
-
-      socket.on("disconnect", () => {
-        console.log("A user disconnected.");
-      });
-    });
-
-    httpServer.listen(3000, () => {
-      console.log("Server started on port 3000");
-      vscode.window.showInformationMessage("Server started on port 3000");
-    });
-  };
-
   console.log(
     'Congratulations, your extension "browser-tab-reloader-vscode-extension" is now active!'
   );
 
-  const disposable = vscode.commands.registerCommand(
-    "browser-tab-reloader-vscode-extension.startServer",
-    () => {
-      if (!io) {
-        startServer();
-      } else {
-        vscode.window.showInformationMessage("Server is already running.");
-      }
-    }
+  if (!io) {
+    startServer();
+  } else {
+    vscode.window.showInformationMessage("Server is already running.");
+  }
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "browser-tab-reloader-vscode-extension.startServer",
+      startServer
+    )
   );
 
-  context.subscriptions.push(disposable);
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "browser-tab-reloader-vscode-extension.stopServer",
+      stopServer
+    )
+  );
+
+  const watcher = vscode.workspace.createFileSystemWatcher("**/*");
+  watcher.onDidChange(onFileChange);
+  watcher.onDidCreate(onFileChange);
+  watcher.onDidDelete(onFileChange);
 }
 
 export function deactivate() {
-  if (io) {
-    io.close(() => {
-      console.log("Server closed");
-    });
-  }
+  vscode.commands.executeCommand(
+    "browser-tab-reloader-vscode-extension.stopServer"
+  );
 }
