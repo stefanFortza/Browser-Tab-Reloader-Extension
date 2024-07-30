@@ -3,8 +3,9 @@
   "displayName": "Browser Tab Reloader",
   "description": "This is an extension that reloads a browser tab when a file changes in current workspace",
   "version": "0.0.1",
+  "publisher": "tacu-stefan",
   "engines": {
-    "vscode": "^1.80.0"
+    "vscode": "^1.91.0"
   },
   "categories": [
     "Other"
@@ -42,7 +43,10 @@
   },
   "icon": "icons/icon.png",
   "scripts": {
-    "vscode:prepublish": "pnpm run compile",
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "package": "pnpm vsce package --no-dependencies",
+    "publish": "pnpm vsce publish --no-dependencies",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "pnpm run compile && pnpm run lint",
@@ -57,6 +61,7 @@
     "@typescript-eslint/parser": "^7.11.0",
     "@vscode/test-cli": "^0.0.9",
     "@vscode/test-electron": "^2.4.0",
+    "esbuild": "^0.23.0",
     "eslint": "^8.57.0",
     "typescript": "^5.4.5"
   },

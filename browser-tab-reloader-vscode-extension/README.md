@@ -1,71 +1,62 @@
-# browser-tab-reloader-vscode-extension README
+# Browser Tab Reloader VSCode Extension
 
-This is the README for your extension "browser-tab-reloader-vscode-extension". After writing up a brief description, we recommend including the following sections.
+This is the README for your extension "browser-tab-reloader-vscode-extension". This extension helps to automatically reload browser tabs when files in your workspace change.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+This extension provides the following features:
 
-For example if there is an image subfolder under your extension project workspace:
+- **Automatic Browser Tab Reloading:** Automatically reloads browser tabs when files in your workspace change.
+- **Customizable Settings:** Configure which files and browsers to monitor and reload.
 
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+![Automatic Browser Tab Reloading](images/auto-reload.gif)
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+To use this extension, ensure you have the following installed:
+
+- **Node.js:** Required to run the extension's server.
+- **VS Code:** Ensure you have the latest version installed.
+- **Supported Browsers:** Chrome, Firefox, or any other browser that supports remote debugging.
+
+### Installation of Node.js
+
+Download and install Node.js from [Node.js official website](https://nodejs.org/).
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+- `browserTabReloader.fileExtensions`: Comma-separated list of file extensions to watch.
+- `browserTabReloader.reloadDelay`: Delay in milliseconds before reloading after a file change.
 
-## Known Issues
+Example settings in your `settings.json`:
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+```json
+{
+    "browserTabReloader.fileExtensions": "html, css, js",
+    "browserTabReloader.reloadDelay": 50
+}
+```
+
+<!-- ## Known Issues
+
+- Currently, only supports Chrome and Firefox browsers.
+- Some file changes might not be detected due to VS Code's internal caching mechanism. -->
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
+- Initial release of browser-tab-reloader-vscode-extension.
+- Features automatic reloading of browser tabs on file changes.
 
 ### 1.0.1
 
-Fixed issue #.
+- Fixed issue with file pattern matching.
 
 ### 1.1.0
 
-Added features X, Y, and Z.
+- Added support for Firefox browser.
+- Improved performance of file change detection.
 
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
