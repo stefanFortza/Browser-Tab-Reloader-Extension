@@ -2,7 +2,7 @@
   "name": "browser-tab-reloader-vscode-extension",
   "displayName": "Browser Tab Reloader",
   "description": "This is an extension that reloads a browser tab when a file changes in current workspace",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "tacu-stefan",
   "engines": {
     "vscode": "^1.91.0"
@@ -13,7 +13,7 @@
   "activationEvents": [
     "onStartupFinished"
   ],
-  "main": "./out/extension.js",
+  "main": "./out/main.js",
   "contributes": {
     "commands": [
       {
@@ -41,7 +41,11 @@
       }
     }
   },
-  "icon": "icons/icon.png",
+  "icon": "images/image.jpeg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stefanFortza/Browser-Tab-Reloader-Extension/tree/main/browser-tab-reloader-vscode-extension"
+  },
   "scripts": {
     "vscode:prepublish": "npm run esbuild-base -- --minify",
     "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
