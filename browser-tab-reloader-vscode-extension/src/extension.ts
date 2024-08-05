@@ -1,8 +1,7 @@
 import * as vscode from "vscode";
-import { io, startServer, stopServer } from "./Server";
+import { io, startServer, stopServer, toggleServer } from "./Server";
 import { onFileChange } from "./OnFileChange";
-
-// vscode.workspace.onDidChangeTextDocument(onFileChange);
+import { createStatusBarItem, statusBarItem } from "./StatusBarItem";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log(
@@ -14,6 +13,8 @@ export function activate(context: vscode.ExtensionContext) {
   } else {
     vscode.window.showInformationMessage("Server is already running.");
   }
+
+  // Commands
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
@@ -29,10 +30,25 @@ export function activate(context: vscode.ExtensionContext) {
     )
   );
 
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "browser-tab-reloader-vscode-extension.toggleServer",
+      toggleServer
+    )
+  );
+
+  // Wathcher
+
   const watcher = vscode.workspace.createFileSystemWatcher("**/*");
   watcher.onDidChange(onFileChange);
   watcher.onDidCreate(onFileChange);
   watcher.onDidDelete(onFileChange);
+
+  // Status Bar Item
+
+  createStatusBarItem();
+  context.subscriptions.push(statusBarItem);
+  statusBarItem.show();
 }
 
 export function deactivate() {
