@@ -4,7 +4,7 @@ import { updateStatusBarItemText } from "./StatusBarItem";
 
 export let io: Server | null = null;
 
-export function startServer() {
+export async function startServer() {
   if (io) {
     vscode.window.showInformationMessage("Server is already running.");
     return io;
@@ -28,11 +28,12 @@ export function startServer() {
     });
   });
 
-  io.listen(3000);
+  const port = getPort();
+  io.listen(port);
 
-  console.log("Server started on port 3000");
+  console.log(`Server started on port ${getPort()}`);
   vscode.window.showInformationMessage(
-    "Browser Tab Reloader: Server started on port 3000"
+    `Browser Tab Reloader: Server started on port ${getPort()}`
   );
 }
 
@@ -59,4 +60,12 @@ export async function toggleServer() {
     );
   }
   updateStatusBarItemText();
+}
+
+export function getPort(): number {
+  return (
+    vscode.workspace
+      .getConfiguration("browser-tab-reloader-vscode-extension")
+      .get<number>("port") || 54999
+  );
 }

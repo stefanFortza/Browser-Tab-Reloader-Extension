@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { io } from "./Server";
+import { getPort, io } from "./Server";
 
 export let statusBarItem: vscode.StatusBarItem;
 
@@ -15,8 +15,8 @@ export function createStatusBarItem() {
 
 export function updateStatusBarItemText() {
   if (io) {
-    statusBarItem.text = "open:3000";
+    statusBarItem.text = `open:${getPort()}`;
   } else {
-    statusBarItem.text = "closed:3000";
+    statusBarItem.text = `closed:${getPort()}`;
   }
 }

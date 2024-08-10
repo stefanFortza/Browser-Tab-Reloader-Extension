@@ -37,6 +37,11 @@
           "type": "string",
           "default": "",
           "description": "Specify file extensions to watch for reloading, separated by commas, ex: ts, js, html\n If left empty all files from workspace will be watched"
+        },
+        "browser-tab-reloader-vscode-extension.port": {
+          "type": "number",
+          "default": 54999,
+          "description": "The port used by the extension server, the default is 54999"
         }
       }
     }
