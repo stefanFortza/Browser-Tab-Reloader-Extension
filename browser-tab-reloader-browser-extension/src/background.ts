@@ -1,5 +1,5 @@
 import browser from "webextension-polyfill";
-import { io } from "socket.io-client";
+import a from "./content-script";
 import {
   getActiveTab,
   getTabsFromStorage,

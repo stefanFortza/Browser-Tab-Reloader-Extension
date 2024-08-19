@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 import browser from "webextension-polyfill";
 
-const socket = io("http://localhost:3000");
+const socket = io("http://localhost:54999");
 
 socket.on("connect", () => {
   console.log(socket.id); // ojIckSD2jqNzOqIrAGzL
