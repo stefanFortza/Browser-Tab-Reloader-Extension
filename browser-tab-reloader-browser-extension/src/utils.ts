@@ -32,3 +32,16 @@ export async function removeTabFromStorage(tab: Tab | number): Promise<void> {
   );
   await setTabsInStorage(newTabs);
 }
+
+export async function getPortFromStorage(): Promise<number> {
+  const item = await browser.storage.local.get("port");
+  console.log(item.port);
+  if (!item.port) {
+    setPortInStorage(54999);
+  }
+  return item.port;
+}
+
+export async function setPortInStorage(port: number): Promise<void> {
+  browser.storage.local.set({ port });
+}
