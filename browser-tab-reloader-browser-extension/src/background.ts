@@ -1,5 +1,4 @@
 import browser from "webextension-polyfill";
-import a from "./content-script";
 import {
   getActiveTab,
   getTabsFromStorage,
