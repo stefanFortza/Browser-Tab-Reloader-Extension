@@ -35,7 +35,8 @@ Example settings in your `settings.json`:
 ```json
 {
     "browserTabReloader.fileExtensions": "html, css, js",
-    "browserTabReloader.reloadDelay": 50
+    "browserTabReloader.reloadDelay": 50,
+    "browserTabReloader.port": 54999,
 }
 ```
 
