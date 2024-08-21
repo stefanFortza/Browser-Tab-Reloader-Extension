@@ -29,15 +29,25 @@ export async function startServer() {
     });
   });
 
-  const port = await findNextFreePort();
+  const res = await findNextFreePort();
+
+  console.log(res);
   try {
-    io.listen(port);
+    io.listen(res.port);
   } catch (error) {}
 
+  if (res.wasPortChanged) {
+    vscode.window.showWarningMessage(
+      `Browser Tab Reloader: default port: ${res.defaultPort} is already being used, port: ${res.port} is used instead.`
+    );
+  } else {
+    vscode.window.showInformationMessage(
+      `Browser Tab Reloader: Server started on port ${getPort()}`
+    );
+  }
   console.log(`Server started on port ${getPort()}`);
-  vscode.window.showInformationMessage(
-    `Browser Tab Reloader: Server started on port ${getPort()}`
-  );
+
+  updateStatusBarItemText();
 }
 
 export function stopServer() {
@@ -50,6 +60,7 @@ export function stopServer() {
     console.log("Server closed");
   });
   io = null;
+  updateStatusBarItemText();
 }
 
 export async function toggleServer() {
@@ -73,9 +84,13 @@ export function getPort(): number {
   );
 }
 
-export async function findNextFreePort(): Promise<number> {
-  let port = 54999;
-  console.log(port);
+export async function findNextFreePort(): Promise<{
+  port: number;
+  defaultPort: number;
+  wasPortChanged: boolean;
+}> {
+  const defaultPort = getPort();
+  let port = defaultPort;
   while (port <= 64000) {
     if (await checkPort(port)) {
       await setPort(port);
@@ -84,7 +99,7 @@ export async function findNextFreePort(): Promise<number> {
       port++;
     }
   }
-  return port;
+  return { port, defaultPort, wasPortChanged: defaultPort !== port };
 }
 
 export async function setPort(port: number): Promise<void> {
