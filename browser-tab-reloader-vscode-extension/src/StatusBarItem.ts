@@ -10,13 +10,14 @@ export function createStatusBarItem() {
   );
   statusBarItem.command = "browser-tab-reloader-vscode-extension.toggleServer";
   updateStatusBarItemText();
+  statusBarItem.tooltip = "Click to start / close reload server";
   statusBarItem.show();
 }
 
 export function updateStatusBarItemText() {
   if (io) {
-    statusBarItem.text = `open:${getPort()}`;
+    statusBarItem.text = `$(sync) ${getPort()}`;
   } else {
-    statusBarItem.text = `closed:${getPort()}`;
+    statusBarItem.text = `$(sync-ignored) ${getPort()}`;
   }
 }
