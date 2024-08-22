@@ -53,6 +53,9 @@ async function injectScript(tabId: number) {
     target: { tabId, allFrames: true },
     files: ["src/content-script.js"],
   });
+
+  await browser.action.setIcon({ path: "../icon/128.png", tabId });
+  console.log("changed");
 }
 
 browser.runtime.onMessage.addListener(
