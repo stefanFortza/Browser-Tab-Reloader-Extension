@@ -1,5 +1,6 @@
 import browser from "webextension-polyfill";
 import {
+  addTabToStorage,
   getActiveTab,
   getTabsFromStorage,
   removeTabFromStorage,
@@ -59,12 +60,25 @@ async function injectScript(tabId: number) {
 }
 
 browser.runtime.onMessage.addListener(
-  async (message: "activate_tab" | "change", sender, sendResponse) => {
+  async (
+    message: "activate_tab" | "change" | "deactivate_tab",
+    sender,
+    sendResponse
+  ) => {
     console.log(message, sender);
 
     if (message === "activate_tab") {
       const activeTab = await getActiveTab();
+      await addTabToStorage(await getActiveTab());
       injectScript(activeTab.id!);
+    } else if (message === "deactivate_tab") {
+      const activeTab = await getActiveTab();
+      await removeTabFromStorage(activeTab.id!);
+
+      await browser.action.setIcon({
+        path: "../icon/128-off.png",
+        tabId: activeTab.id,
+      });
     } else if (message === "change") {
       const activeTabs = await getTabsFromStorage();
       activeTabs.forEach((tab) => {

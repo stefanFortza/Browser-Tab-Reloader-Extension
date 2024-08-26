@@ -7,6 +7,7 @@ import {
   getTabsFromStorage,
   removeTabFromStorage,
 } from "../utils";
+import Toggle from "../components/Toggle";
 
 const getIsCurrentTabActiveForReloading = async () => {
   const tabs = await getTabsFromStorage();
@@ -25,36 +26,30 @@ const Popup: FC = () => {
     f();
   }, []);
 
-  const handleActivate = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleActivate = async (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("Activated Extension On This Page");
-    await addTabToStorage(await getActiveTab());
+    // await addTabToStorage(await getActiveTab());
     console.log(await getTabsFromStorage());
     browser.runtime.sendMessage("activate_tab");
     setIsActive(true);
   };
 
-  const handleDeactivate = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleDeactivate = async (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("Activated Extension On This Page");
-    await removeTabFromStorage(await getActiveTab());
+    // await removeTabFromStorage(await getActiveTab());
+    browser.runtime.sendMessage("deactivate_tab");
     console.log(await getTabsFromStorage());
     setIsActive(false);
   };
 
   return (
-    <div>
-      {!isActive ? (
-        <button style={{ backgroundColor: "green" }} onClick={handleActivate}>
-          Activate
-        </button>
-      ) : (
-        <button style={{ backgroundColor: "red" }} onClick={handleDeactivate}>
-          Deactivate
-        </button>
-      )}
+    <div id="container">
+      <Toggle
+        isActive={isActive}
+        onActivate={handleActivate}
+        onDeactivate={handleDeactivate}
+        setIsActive={setIsActive}
+      />
     </div>
   );
 };
