@@ -19,7 +19,7 @@ export const addTabToStorage = async (tab: Tab) => {
 export const getActiveTab = async () => {
   let queryOptions = { active: true, lastFocusedWindow: true };
   // `tab` will either be a `tabs.Tab` instance or `undefined`.
-  let [tab] = await browser.tabs.query({ active: true });
+  let [tab] = await browser.tabs.query(queryOptions);
   return tab;
 };
 
