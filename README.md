@@ -284,7 +284,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [licence-url]: https://github.com/stefanFortza/Browser-Tab-Reloader-Extension/blob/master/LICENCE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/tacudarius/
-[demo-video]: images/demo-video-thumbnail.png
+[demo-video]: images/demo.mp4
 [Typescript]: https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=fff
 [Typescript-url]: https://www.typescriptlang.org
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
