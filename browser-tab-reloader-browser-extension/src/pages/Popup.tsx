@@ -4,8 +4,10 @@ import "./Popup.css";
 import {
   addTabToStorage,
   getActiveTab,
+  getPortFromStorage,
   getTabsFromStorage,
   removeTabFromStorage,
+  setPortInStorage,
 } from "../utils";
 import Toggle from "../components/Toggle";
 
@@ -17,11 +19,14 @@ const getIsCurrentTabActiveForReloading = async () => {
 
 const Popup: FC = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
+  const [port, setPort] = useState(54999);
 
   useEffect(() => {
     const f = async () => {
       const isActiveForReloading = await getIsCurrentTabActiveForReloading();
       setIsActive(isActiveForReloading);
+      const storagePort = await getPortFromStorage();
+      setPort(storagePort);
     };
     f();
   }, []);
@@ -42,6 +47,18 @@ const Popup: FC = () => {
     setIsActive(false);
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const port = e.currentTarget.value;
+    const portInt = parseInt(e.currentTarget.value);
+    if (!port[port.length - 1].match(/^\d+$/) || portInt > 65535) {
+      return;
+    }
+    setPort(portInt);
+    setPortInStorage(portInt);
+    getPortFromStorage();
+    console.log(port);
+  };
+
   return (
     <div id="container">
       <Toggle
@@ -50,6 +67,18 @@ const Popup: FC = () => {
         onDeactivate={handleDeactivate}
         setIsActive={setIsActive}
       />
+
+      <section>
+        <label htmlFor="port">Port(default: 54999, max 65535): </label>
+
+        <input
+          id="port"
+          name="port"
+          type="text"
+          onChange={handleInputChange}
+          value={port}
+        />
+      </section>
     </div>
   );
 };

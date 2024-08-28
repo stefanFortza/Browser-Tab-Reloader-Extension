@@ -1,16 +1,16 @@
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#root {
+  height: 100%;
+  width: 100%;
 }
 
 #container {
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .status {
@@ -62,4 +62,39 @@ input:checked + .slider {
 
 input:checked + .slider:before {
   transform: translateX(26px);
+}
+
+#port {
+  border: 0;
+  outline: 0;
+  color: rgb(60, 66, 87);
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
+    rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px,
+    rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
+    rgb(0 0 0 / 0%) 0px 0px 0px 0px;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  padding: 4px 8px;
+  min-height: 28px;
+  vertical-align: middle;
+  transition: background-color 0.24s, box-shadow 0.24s;
+  transition-property: background-color, box-shadow;
+  transition-duration: 0.24s, 0.24s;
+  transition-timing-function: ease, ease;
+  transition-delay: 0s, 0s;
+  :focus {
+    box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px,
+      rgb(58 151 212 / 36%) 0px 0px 0px 4px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
+      rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
+      rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px;
+  }
+}
+section > label {
+  font-size: 15px;
+  display: block;
+  color: white;
+  text-align: center;
 }
