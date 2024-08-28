@@ -80,7 +80,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]]()
+[![Demo video][demo-video]](images/demo.mp4)
 
 Browser Tab Reloader is an extension that can be used alongside backend frameworks(like django or express with template engine),that don't have hot reload, to automatically refresh the tab when you modify project files.
 
@@ -284,7 +284,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [licence-url]: https://github.com/stefanFortza/Browser-Tab-Reloader-Extension/blob/master/LICENCE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/tacudarius/
-[product-screenshot]: images/demo.gif
+[demo-video]: images/demo-video-thumbnail.png
 [Typescript]: https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=fff
 [Typescript-url]: https://www.typescriptlang.org
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
