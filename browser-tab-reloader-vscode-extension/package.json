@@ -30,7 +30,7 @@
       "properties": {
         "browser-tab-reloader-vscode-extension.reloadDelay": {
           "type": "integer",
-          "default": 50,
+          "default": 500,
           "description": "Delay in ms before reloading the browser tab"
         },
         "browser-tab-reloader-vscode-extension.fileExtensions": {
