@@ -1,7 +1,6 @@
 # Change Log
 
-All notable changes to the "browser-tab-reloader-vscode-extension" extension will be documented in this file.
+### 1.0.0
 
-## [Unreleased]
-
-- Initial release
+- Initial release of browser-tab-reloader-vscode-extension.
+- Features automatic reloading of multiple browser tabs on file changes.
