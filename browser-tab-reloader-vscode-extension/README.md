@@ -2,8 +2,9 @@
 
 This extension helps to automatically reload browser tabs when files in your workspace change.
 
-![Automatic Browser Tab Reloading](https://github.com/stefanFortza/Browser-Tab-Reloader-Extension/blob/main/browser-tab-reloader-vscode-extension/images/image.jpeg?raw=true)
-
+<p align="center">
+  <img src="https://github.com/stefanFortza/Browser-Tab-Reloader-Extension/blob/main/browser-tab-reloader-vscode-extension/images/image.jpeg?raw=true" alt="Automatic Browser Tab Reloading">
+</p>
 
 ## ⚠️ Important Configuration Warning
 
