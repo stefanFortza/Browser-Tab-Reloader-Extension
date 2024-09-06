@@ -21,7 +21,6 @@
     "{{chrome}}.service_worker": "src/background.ts",
     "{{firefox}}.scripts": ["src/background.ts"]
   },
-  "host_permissions": ["http://localhost:3000/*", "http://*/*", "https://*/*"],
   "permissions": ["activeTab", "tabs", "storage", "scripting"],
 
   "content_security_policy": {
