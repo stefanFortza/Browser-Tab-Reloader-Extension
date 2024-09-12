@@ -20,6 +20,7 @@ export default defineConfig({
     webExtension({
       manifest: generateManifest,
       additionalInputs: ["src/content-script.ts"],
+      browser: "firefox",
     }),
   ],
 });
