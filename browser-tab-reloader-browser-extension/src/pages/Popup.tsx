@@ -57,6 +57,8 @@ const Popup: FC = () => {
     setPortInStorage(portInt);
     getPortFromStorage();
     console.log(port);
+    // handleDeactivate(e);
+    // handleActivate(e);
   };
 
   return (
