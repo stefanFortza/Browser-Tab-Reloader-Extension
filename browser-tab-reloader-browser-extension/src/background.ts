@@ -55,7 +55,11 @@ async function injectScript(tabId: number) {
     files: ["src/content-script.js"],
   });
 
-  await browser.action.setIcon({ path: "../icon/128.png", tabId });
+  if (__BROWSER__ === "firefox") {
+    await browser.browserAction.setIcon({ path: "../icon/128.png", tabId });
+  } else {
+    await browser.action.setIcon({ path: "../icon/128.png", tabId });
+  }
   console.log("changed");
 }
 
@@ -75,10 +79,17 @@ browser.runtime.onMessage.addListener(
       const activeTab = await getActiveTab();
       await removeTabFromStorage(activeTab.id!);
 
-      await browser.action.setIcon({
-        path: "../icon/128-off.png",
-        tabId: activeTab.id,
-      });
+      if (__BROWSER__ === "firefox") {
+        await browser.browserAction.setIcon({
+          path: "../icon/128-off.png",
+          tabId: activeTab.id,
+        });
+      } else {
+        await browser.action.setIcon({
+          path: "../icon/128-off.png",
+          tabId: activeTab.id,
+        });
+      }
     } else if (message === "change") {
       const activeTabs = await getTabsFromStorage();
       activeTabs.forEach((tab) => {

@@ -13,6 +13,8 @@ function generateManifest() {
   };
 }
 
+const target = process.env.TARGET || "chrome";
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -20,7 +22,11 @@ export default defineConfig({
     webExtension({
       manifest: generateManifest,
       additionalInputs: ["src/content-script.ts"],
-      browser: "firefox",
+      browser: target,
     }),
   ],
+
+  define: {
+    __BROWSER__: JSON.stringify(target),
+  },
 });
