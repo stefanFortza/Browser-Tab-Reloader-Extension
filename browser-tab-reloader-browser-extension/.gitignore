@@ -27,4 +27,5 @@ dist-ssr
 .webextrc
 .webextrc.*
 
-dist.zip
+dist_chrome
+*.zip
