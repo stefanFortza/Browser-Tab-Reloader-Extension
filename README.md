@@ -109,7 +109,13 @@ Browser Tab Reloader is an extension that can be used alongside backend framewor
 
 #### For VScode extension
 
+<https://marketplace.visualstudio.com/items?itemName=tacu-stefan.browser-tab-reloader-vscode-extension>
+
 #### For Browser extension
+
+- Web Store: <https://chromewebstore.google.com/detail/browser-tab-reloader-brow/dckbbpddgogbadffbcocahcpmdbhefgb?authuser=0&hl=en>
+
+- Firefox ADD-ONS: <https://addons.mozilla.org/en-US/firefox/addon/browser-tab-reloader/>
 
 ### Installation locally
 
