@@ -6,6 +6,14 @@ This extension helps to automatically reload browser tabs when files in your wor
   <img src="https://github.com/stefanFortza/Browser-Tab-Reloader-Extension/blob/main/browser-tab-reloader-vscode-extension/images/image.jpeg?raw=true" alt="Automatic Browser Tab Reloading">
 </p>
 
+## Usage
+
+Download the Browser Tab Reloader browser extension from:
+
+- Web Store: <https://chromewebstore.google.com/detail/browser-tab-reloader-brow/dckbbpddgogbadffbcocahcpmdbhefgb?authuser=0&hl=en>
+
+Video demo on github: <https://github.com/stefanFortza/Browser-Tab-Reloader-Extension>
+
 ## ⚠️ Important Configuration Warning
 
 If you are using a backend server (e.g., Django) that takes time to reload after file changes, it is crucial to adjust the `reloadDelay` setting. This delay ensures that the browser does not refresh before the server is ready, preventing potential issues with incomplete reloads.
@@ -25,9 +33,6 @@ This extension provides the following features:
 - **Automatic Browser Tab Reloading:** Automatically reloads browser tabs when files in your workspace change.
 - **Customizable Settings:** Configure which files and browsers to monitor and reload.
 - **Configurable Reload Delay:** Adjust the delay before reloading to ensure your backend server (e.g. Django, Express) has time to compile changes.
-
-
-
 
 ## Requirements
 
