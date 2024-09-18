@@ -12,6 +12,8 @@ Download the Browser Tab Reloader browser extension from:
 
 - Web Store: <https://chromewebstore.google.com/detail/browser-tab-reloader-brow/dckbbpddgogbadffbcocahcpmdbhefgb?authuser=0&hl=en>
 
+- Firefox ADD-ONS: <https://addons.mozilla.org/en-US/firefox/addon/browser-tab-reloader/>
+
 Video demo on github: <https://github.com/stefanFortza/Browser-Tab-Reloader-Extension>
 
 ## ⚠️ Important Configuration Warning

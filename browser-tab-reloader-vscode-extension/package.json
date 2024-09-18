@@ -2,7 +2,7 @@
   "name": "browser-tab-reloader-vscode-extension",
   "displayName": "Browser Tab Reloader",
   "description": "Reloads browser tab when a change is made in workspace",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "publisher": "tacu-stefan",
   "engines": {
     "vscode": "^1.91.0"
@@ -55,7 +55,7 @@
     "vscode:prepublish": "npm run esbuild-base -- --minify",
     "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
     "package": "pnpm vsce package --no-dependencies",
-    "publish": "pnpm vsce publish minor --no-dependencies",
+    "publish": "pnpm vsce publish 1.2.1 --no-dependencies",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "pnpm run compile && pnpm run lint",
