@@ -113,7 +113,6 @@ Browser Tab Reloader is an extension that can be used alongside backend framewor
 
 ### Installation locally
 
-1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
    git clone https://github.com/stefanFortza/Browser-Tab-Reloader-Extension.git
