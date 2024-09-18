@@ -31,6 +31,5 @@
 
   "{{chrome}}.content_security_policy": {
     "extension_pages": "script-src 'self' 'wasm-unsafe-eval' http://localhost:*; object-src 'self';"
-  },
-  "{{firefox}}.content_security_policy": "script-src 'self' 'wasm-unsafe-eval' http://localhost:*; object-src 'self';"
+  }
 }
